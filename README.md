@@ -17,9 +17,9 @@ This repository currently does not cover either of the above scenarios but inste
 
 Consider the OSDU platform as it exists today. You use REST API's to request an upload URL for a new file, upload the file to that URL, add in metadata and now your OSDU platform can work with that file (making it searchable/etc.)
 
-In an OSDU deployment in Azure, the Upload URL is actually a signed url to an Azure Blob Storage account. This makes moving data relatively easy with the use of the [azcopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10 tool without a lot of additional overhead.  
+In an OSDU deployment in Azure, the Upload URL is actually a signed url to an Azure Blob Storage account. This makes moving data relatively easy with the use of the [azcopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10) tool without a lot of additional overhead.  
 
-This repository can be used to perform just such a test to validate parallelization of data movement using [azcopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10 alongside other Azure services. 
+This repository can be used to perform just such a test to validate parallelization of data movement using [azcopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10) alongside other Azure services. 
 
 
 # Document Sections
