@@ -1,5 +1,7 @@
 # Bulk Ingress/Egress
 
+[Return to observations](./observations.md)
+
 Attempted to move approximately 1PB of data using
 
 - 10 ACI instances with azcopy as the core movement
@@ -33,3 +35,5 @@ This indicates that something else in the background is broken or a limit was re
 
 ## Ingress (Destination)
 ![classic](images/bulkingress.jpg)
+
+[Return to observations](./observations.md)

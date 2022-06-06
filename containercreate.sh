@@ -7,7 +7,7 @@
 
 
 # Your sub to deploy containers
-AZURE_SUB="b0844137-4c2f-4091-b7f1-bc64c8b60e9c"
+AZURE_SUB="YOUR_AZURE_SUB_ID"
 # Your RG for container deployments
 AZURE_RG="containermove2"
 # The osdu data seed image Your own test container

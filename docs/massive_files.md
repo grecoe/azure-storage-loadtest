@@ -1,6 +1,6 @@
 # azcopy - Massive Files
 
-[Return to main documentation](../README.md)
+[Return to observations](./observations.md)
 
 There comes a need when a customer needs to move in a massive dataset to Azure for storage/processing. This repo folder contains some information and a process of using azcopy to see what kinds of throughput can be acheived. 
 
@@ -259,4 +259,5 @@ Starting  2022-05-24 14:22:02.757290
 Total Run Time:  2022-05-24 15:25:12.589662  =  63.16387248333333
 Long tail was a 30 minute copy
 
-[Return to main documentation](../README.md)
+[Return to observations](./observations.md)
+
