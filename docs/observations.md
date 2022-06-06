@@ -1,6 +1,6 @@
 # Observations
 
-[Return to main documentation](../README.md)
+[Return to main documentation](../README.md#additional-documents)
 
 This page either contains or links to observation documentation. 
 
@@ -105,7 +105,7 @@ One more test was run, using only standard storage, but a fewer number of contai
 
 |Type|GB/Min|Total Time: Hours|
 |---|---|---|
-|Standard|69.27|24.29|
+|Standard|TBD|TBD|
 
 
-[Return to main documentation](../README.md)
+[Return to main documentation](../README.md#additional-documents)

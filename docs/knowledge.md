@@ -1,6 +1,6 @@
 # Learnings
 
-[Return to main documentation](../README.md)
+[Return to main documentation](../README.md#additional-documents)
 
 The fastest movement of data is between two storage accounts within the same subscription and within the same region. The most important part of that configuration is that both storage accounts are located in the same region. 
 
@@ -56,4 +56,4 @@ Between June 1 and June 6 the Petabyte scale testing occured. Over that 5 day pe
 ![costs](./images/pbmovecosts.jpg)
 
 
-[Return to main documentation](../README.md)
+[Return to main documentation](../README.md#additional-documents)

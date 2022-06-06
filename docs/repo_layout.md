@@ -1,6 +1,6 @@
 # Repository Layout and Getting Started
 
-[Return to main documentation](../README.md)
+[Return to main documentation](../README.md#additional-documents)
 
 The repository consists of a Python application to actuate the move of files from one storage account to another. 
 
@@ -107,4 +107,4 @@ This file is used to check the container instances that have been run. When a co
 
 
 
-[Return to main documentation](../README.md)
+[Return to main documentation](../README.md#additional-documents)
