@@ -66,5 +66,9 @@ The graph below shows the costs in the subscription over a 6 day period of testi
 
 ![costs](./images/pbmovecosts.jpg)
 
+Finally, this screenshot is a summary of the source storage account that fed the tests to get a sense of the number of transactions that occured. 
+
+![source transactions](./images/source_transactions.jpg)
+
 
 [Return to main documentation](../README.md#additional-documents)
