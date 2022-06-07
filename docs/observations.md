@@ -70,9 +70,9 @@ Observations after performing multiple tests for the above configurations are as
 [*] Calculated from GB/Min numbers
 
 
-It's important to note that for tests 1 and 2 these numbers do not reflect any of the Azure Storage documentation. In fact, when moving to [petabayte](#petabyte-testing) these numbers were not seen, so it's unclear how these numbers could possibly acheived. 
+It's important to note that for tests 1 and 2 these numbers reflect close to the limits set in the Azure Storage documentation, but for each container not on the account as a whole.   
 
-However, the throughput numbers were simple calculations of number of GB sent during a test run and the number of minutes it took for the test to run. It's possible that we were able to obtain these results because the total load of the data was relatively small. 
+The throughput numbers were simple calculations of number of GB sent during a test run and the number of minutes it took for the test to run.  
 
 Notes from these tests can be found [here](./massive_files.md).
 
@@ -84,16 +84,16 @@ This testing was a bit more comprehensive in volume of data. There were two test
 - Data File: 100.99GB
 - ACI Count: 10
 - Files per instance: 1000
-- Total Test Size: 986TB
+- Total Test Size: 986TB (1,009,900 GB)
 
 The first test was run using standard storage accounts and the second was run using premium storage accounts. 
 
 These tests were run to completion so gueswork calculations were needed.
 
-|Type|GB/Min|Total Time: Hours|
-|---|---|---|
-|Standard|69.27|24.29|
-|Premium|31.73|53.04|
+|Type|GB/Min|GB/ACI/Min|Total Time: Hours|
+|---|---|---|---|
+|Standard|692.7|69.27|24.29|
+|Premium|317.37|31.72|53.04|
 
 The throughput on these tests were more in line with the advertised througput rates from the storage service itself. 
 
@@ -101,11 +101,11 @@ One more test was run, using only standard storage, but a fewer number of contai
 - Data File: 100.99GB
 - ACI Count: 4
 - Files per instance: 2500
-- Total Test Size: 986TB
+- Total Test Size: 986TB (1,009,900 GB)
 
-|Type|GB/Min|Total Time: Hours|
-|---|---|---|
-|Standard|TBD|TBD|
+|Type|GB/Min|GB/ACI/Min|Total Time: Hours|
+|---|---|---|---|
+|Standard|281.13|28.11|59.87|
 
 
 [Return to main documentation](../README.md#additional-documents)

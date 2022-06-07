@@ -49,73 +49,77 @@ if not config.destination.account_sas:
     )
 
 
-# Get URI's of the files in the source location blob or file
-files = StorageUtil.get_files(config.source)
-
-print("Starting ", datetime.now())
 start = datetime.utcnow()
+print("Starting ", start)
 
-current_file = 1
+try:
+    # Get URI's of the files in the source location blob or file
+    files = StorageUtil.get_files(config.source)
 
-process_results = []
-if len(files) == 0 :
-    print("No files in source location")
-else:
 
-    targets = []
-    for file in files:
-        location = StorageUtil.get_file_url(config.destination, "{}.test".format(str(uuid.uuid4()))) #file[0])
-        print("Captured file", file[0])
-        targets.append((file[1], location))
+    current_file = 1
 
-    # Setting config.file_count will just move whatever it finds in the source location 
-    # to the destination location. Any other value will copy a single file from the source location
-    # the number of times identified by this value. 
-    if config.file_count == -1:
-        # Just grab what's there. 
+    process_results = []
+    if len(files) == 0 :
+        print("No files in source location")
+    else:
 
-        print("Move contents of path")
-        total_files = len(targets)
-        for target in targets:
-            try:
+        targets = []
+        for file in files:
+            location = StorageUtil.get_file_url(config.destination, "{}.test".format(str(uuid.uuid4()))) #file[0])
+            print("Captured file", file[0])
+            targets.append((file[1], location))
+
+        # Setting config.file_count will just move whatever it finds in the source location 
+        # to the destination location. Any other value will copy a single file from the source location
+        # the number of times identified by this value. 
+        if config.file_count == -1:
+            # Just grab what's there. 
+
+            print("Move contents of path")
+            total_files = len(targets)
+            for target in targets:
+                try:
+                    print("Record {} of {}".format(current_file, total_files))
+                    current_file += 1
+
+                    # Use target as it has source/destination information
+                    result = StorageCopy.copy_storage_file(config.az_copy_location, target[0], target[1]) 
+                    process_results.append(result)
+                    if not result.success:
+                        print("FAILED")
+                        break
+                except Exception as ex:
+                    print("Generic Exception")
+                    print(type(ex))
+        else:
+
+            total_files = config.file_count
+
+            for idx in range(config.file_count):
                 print("Record {} of {}".format(current_file, total_files))
                 current_file += 1
 
-                # Use target as it has source/destination information
-                result = StorageCopy.copy_storage_file(config.az_copy_location, target[0], target[1]) 
-                process_results.append(result)
-                if not result.success:
-                    print("FAILED")
-                    break
-            except Exception as ex:
-                print("Generic Exception")
-                print(type(ex))
-    else:
+                # Generate a unique target location for each call since we are using the same file
+                location = StorageUtil.get_file_url(config.destination, "{}.test".format(str(uuid.uuid4()))) #file[0])
+                try:
+                    result = StorageCopy.copy_storage_file(config.az_copy_location, targets[0][0], location) 
+                    process_results.append(result)
+                    if not result.success:
+                        print("FAILED")
+                        break
+                except Exception as ex:
+                    print("Generic Exception")
+                    print(type(ex))
 
-        total_files = config.file_count
-
-        for idx in range(config.file_count):
-            print("Record {} of {}".format(current_file, total_files))
-            current_file += 1
-
-            # Generate a unique target location for each call since we are using the same file
-            location = StorageUtil.get_file_url(config.destination, "{}.test".format(str(uuid.uuid4()))) #file[0])
-            try:
-                result = StorageCopy.copy_storage_file(config.az_copy_location, targets[0][0], location) 
-                process_results.append(result)
-                if not result.success:
-                    print("FAILED")
-                    break
-            except Exception as ex:
-                print("Generic Exception")
-                print(type(ex))
+except Exception as ex:
+    pass
 
 end = datetime.utcnow()
-
 delta = end - start
-print("Total Run Time: ", datetime.now(), " = ",  delta.total_seconds()/60 )
-print("Total Results:", len(process_results))
+print("Start Time (UTC):", start)
+print("End Time (UTC):", end)
+print("Run Time Minutes:",  delta.total_seconds()/60)
+print("Total Processed Results:", len(process_results))
 failed = [x for x in process_results if x.success == False]
 print("Total Failed:", len(failed))
-
-print("Done")

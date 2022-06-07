@@ -9,7 +9,7 @@
 # Your sub to deploy containers
 AZURE_SUB="YOUR_AZURE_SUB_ID"
 # Your RG for container deployments
-AZURE_RG="containermove2"
+AZURE_RG="containermove"
 # The osdu data seed image Your own test container
 LOAD_IMAGE="anddang/batchload"
 
@@ -21,7 +21,7 @@ docker push $LOAD_IMAGE
 az account set -s $AZURE_SUB
 
 echo "Create ACI Instances"
-for name in movetest{1..4}
+for name in movetest{1..10}
 do 
     az container create \
         -g $AZURE_RG \

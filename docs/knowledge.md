@@ -4,6 +4,8 @@
 
 The fastest movement of data is between two storage accounts within the same subscription and within the same region. The most important part of that configuration is that both storage accounts are located in the same region. 
 
+Further, maximizing processes to move data also maximizes throughput as a whole to the account. That is, 10 instances outperformed 4 instances.
+
 However, performance drops off significantly if the storage accounts are of the premium sku, so stick with a standard sku.
 
 Azure File Shares are generally too small for the task at hand, even with the premium SKU. However, if the data to move in really is only 5TiB, perhaps it's not an issue as the time to move it will still be fairly quick. 
