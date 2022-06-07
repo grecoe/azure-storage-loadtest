@@ -27,6 +27,8 @@ Aside from the configuration of the services, the data moved was
 - [Large Dataset Testing](#large-dataset-testing)
 - [Terrabyte Testing](#terrabyte-testing)
 - [Petabyte Testing](#petabyte-testing)
+- [Data Movement Costs](./knowledge.md#data-movement-costs)
+    - NOTE this information is in a different file. 
 
 ## Large Dataset Testing
 
@@ -70,8 +72,6 @@ Observations after performing multiple tests for the above configurations are as
 [*] Calculated from GB/Min numbers
 
 
-It's important to note that for tests 1 and 2 these numbers reflect close to the limits set in the Azure Storage documentation, but for each container not on the account as a whole.   
-
 The throughput numbers were simple calculations of number of GB sent during a test run and the number of minutes it took for the test to run.  
 
 Notes from these tests can be found [here](./massive_files.md).
@@ -88,14 +88,14 @@ This testing was a bit more comprehensive in volume of data. There were two test
 
 The first test was run using standard storage accounts and the second was run using premium storage accounts. 
 
-These tests were run to completion so gueswork calculations were needed.
+These tests were run to completion so gueswork calculations were not needed.
 
 |Type|GB/Min|GB/ACI/Min|Total Time: Hours|
 |---|---|---|---|
 |Standard|692.7|69.27|24.29|
 |Premium|317.37|31.72|53.04|
 
-The throughput on these tests were more in line with the advertised througput rates from the storage service itself. 
+The throughput on these tests were signifincantly greater than all the other tests, though the overall throughput was only about 19% of the advertised throughput rates advertised for storage accounts at  [60GB/s](https://docs.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account).  
 
 One more test was run, using only standard storage, but a fewer number of container instances.
 - Data File: 100.99GB
@@ -105,7 +105,7 @@ One more test was run, using only standard storage, but a fewer number of contai
 
 |Type|GB/Min|GB/ACI/Min|Total Time: Hours|
 |---|---|---|---|
-|Standard|281.13|28.11|59.87|
+|Standard|281.13|70.28|59.87|
 
 
 [Return to main documentation](../README.md#additional-documents)

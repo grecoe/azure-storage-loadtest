@@ -6,17 +6,20 @@ The fastest movement of data is between two storage accounts within the same sub
 
 Further, maximizing processes to move data also maximizes throughput as a whole to the account. That is, 10 instances outperformed 4 instances.
 
-However, performance drops off significantly if the storage accounts are of the premium sku, so stick with a standard sku.
+Performance drops off significantly if the storage accounts are of the premium sku, so stick with a standard sku.
 
 Azure File Shares are generally too small for the task at hand, even with the premium SKU. However, if the data to move in really is only 5TiB, perhaps it's not an issue as the time to move it will still be fairly quick. 
 
 Getting data into Azure is likely going to be the biggest problem as there are really two choices. Upload over a network or using Azure Databox. 
 
 - [Azure Storage Services](#azure-storage-services)
+    - Basics about Azure File Share and Blob Storage
 - [azcopy](#azcopy)
+    - More details on the azcopy application.
 - [Azure Databox](#azure-databox)
+    - Information about Azure Databox
 - [Data Movement Costs](#data-movement-costs)
-
+    - Review of costs incurred while running tests. 
 
 ## Azure Storage Services
 
@@ -36,6 +39,8 @@ According to the product team themselves, there are no limits on the number of a
 
 In the Azure eco-system, running copies cross region was painfully slow compared to in-region, so in-region moves are suggested whenever possible. 
 
+However, throughput limits set on a storage account indicate limits around 60GB/s and we came no where near that at 60-70GB/min, indicating that an even more robust test should be succesful.  
+
 ## Azure Databox
 
 Databox is a service in which hardware is sent out to a subscription owner to load up with data. However, the person who orders it:
@@ -53,7 +58,11 @@ Estimates, assuming a solid and uninterrupted network connection, would be about
 
 Costs are going to be a significant consideration when moving the data to Azure, however, moving data within Azure is also a consideration.
 
-Between June 1 and June 6 the Petabyte scale testing occured. Over that 5 day period approximately 4PB of data was moved, but the costs need some investigation:
+Between June 1 and June 6 the Petabyte scale testing occured. Over that 5 day period approximately 4PB of data was moved. Initially the storage accounts did have soft delete enabled so after initial tests the storage account still showed multiple petabytes of data. .
+
+See the [azure storage costs page](https://azure.microsoft.com/en-us/pricing/details/storage/blobs/). A rough calculation there puts the cost of a PB of data at approximately $20.1K per month or $651/day on a 31 day month. 
+
+The graph below shows the costs in the subscription over a 6 day period of testing. At the end, the destination storage accounts were deleted (again, soft delete was showing PB of data still available). These costs are almost entirely due to storage testing as the sub has very little in it. So, storage plus networking costs are all that are included. 
 
 ![costs](./images/pbmovecosts.jpg)
 
